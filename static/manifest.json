@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
 
   "name": "Filled by build script",
   "description": "Filled by build script",
@@ -8,8 +8,9 @@
   "author": "Filled by build script",
   "homepage_url": "Filled by build script",
 
-  "permissions": ["activeTab", "contextMenus", "storage", "http://localhost/"],
-  "optional_permissions": ["https://codejam.googleapis.com/dashboard/get_file/*"],
+  "permissions": ["activeTab", "contextMenus", "storage", "scripting"],
+  "host_permissions": ["http://localhost/"],
+  "optional_host_permissions": ["https://codejam.googleapis.com/dashboard/get_file/*"],
 
   "icons": {
     "16": "icons/icon-16.png",
@@ -25,14 +26,14 @@
   },
 
   "background": {
-    "scripts": ["js/common.js", "js/background.js"]
+    "service_worker": "js/background.js"
   },
 
   "options_ui": {
     "page": "options.html"
   },
 
-  "browser_action": {
+  "action": {
     "default_icon": {
       "16": "icons/icon-16.png",
       "19": "icons/icon-19.png",

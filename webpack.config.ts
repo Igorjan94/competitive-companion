@@ -76,6 +76,9 @@ const commonConfig: webpack.Configuration = {
     ],
   },
   plugins: [new ForkTsCheckerWebpackPlugin()],
+  watchOptions: {
+    poll: 1000,
+  },
 };
 
 const extensionConfig: webpack.Configuration = {
@@ -90,7 +93,7 @@ const extensionConfig: webpack.Configuration = {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all',
+      chunks: chunk => chunk.name !== 'background',
       name: 'common',
     },
   },

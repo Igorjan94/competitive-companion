@@ -8,21 +8,21 @@ function createContextMenu(): void {
   browser.contextMenus.create({
     id: 'parse-with',
     title: 'Parse with',
-    contexts: ['browser_action'],
+    contexts: ['action'],
   });
 
   browser.contextMenus.create({
     id: 'problem-parser',
     parentId: 'parse-with',
     title: 'Problem parser',
-    contexts: ['browser_action'],
+    contexts: ['action'],
   });
 
   browser.contextMenus.create({
     id: 'contest-parser',
     parentId: 'parse-with',
     title: 'Contest parser',
-    contexts: ['browser_action'],
+    contexts: ['action'],
   });
 
   for (const parser of parsers) {
@@ -33,7 +33,7 @@ function createContextMenu(): void {
       id: `parse-with-${name}`,
       parentId: `${isContestParser ? 'contest' : 'problem'}-parser`,
       title: name,
-      contexts: ['browser_action'],
+      contexts: ['action'],
     });
   }
 }
@@ -45,14 +45,17 @@ async function loadContentScript(tab: Tabs.Tab, parserName: string): Promise<voi
     });
   }
 
-  for (const file of ['common', 'content']) {
-    await browser.tabs.executeScript(tab.id, { file: `js/${file}.js` });
-  }
+  await browser.scripting.executeScript({
+    target: {
+      tabId: tab.id,
+    },
+    files: ['js/common.js', 'js/content.js'],
+  });
 
   sendToContent(tab.id, MessageAction.Parse, { parserName });
 }
 
-function onBrowserAction(tab: Tabs.Tab): void {
+function onAction(tab: Tabs.Tab): void {
   loadContentScript(tab, null);
 }
 
@@ -108,8 +111,7 @@ function handleMessage(message: Message | any, sender: Runtime.MessageSender): v
   }
 }
 
-browser.browserAction.onClicked.addListener(onBrowserAction);
+browser.action.onClicked.addListener(onAction);
 browser.contextMenus.onClicked.addListener(onContextMenu);
 browser.runtime.onMessage.addListener(handleMessage);
-
-createContextMenu();
+browser.runtime.onInstalled.addListener(createContextMenu);
