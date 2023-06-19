@@ -1,6 +1,36 @@
 # Changelog
 
-## 2.39.0 (Unreleased)
+## [2.44.1](https://github.com/jmerle/competitive-companion/releases/tag/2.44.1) (Unreleased)
+- Fixed the parsing of Codeforces problems on "/problemset/gymProblem" URLs (thanks [@touhidurrr](https://github.com/touhidurrr))
+- Fixed the parsing of CodeChef problems in the Learn category
+
+## [2.44.0](https://github.com/jmerle/competitive-companion/releases/tag/2.44.0) (2023-06-10)
+- Added support for Dimik OJ and TheJobOverflow (thanks [@touhidurrr](https://github.com/touhidurrr))
+
+## [2.43.0](https://github.com/jmerle/competitive-companion/releases/tag/2.43.0) (2023-05-28)
+- Added support for AlgoZenith and Sort Me
+- Fixed the parsing of TLX course problems and problems with time limits in milliseconds (thanks [@ChrisG661](https://github.com/ChrisG661))
+- Fixed the parsing of Codeforces problems with time/memory limits in bold text (thanks [@colazcy](https://github.com/colazcy))
+- Fixed the parsing of PTA problems
+
+## [2.42.0](https://github.com/jmerle/competitive-companion/releases/tag/2.42.0) (2023-04-21)
+- Added support for MOI Arena
+- Fixed the parsing of Eolymp problems and contests
+- Improved the parsing of UVa Online Judge problems with trailing or inner spaces in sample cases
+
+## [2.41.0](https://github.com/jmerle/competitive-companion/releases/tag/2.41.0) (2023-04-02)
+- Added support for OTOG and RoboContest (thanks [@Anon-136](https://github.com/Anon-136) for the OTOG parser)
+- Fixed the parsing of PTA problems with code blocks in the problem description
+- Fixed the parsing of Baekjoon Online Judge problems with multiple time limits
+
+## [2.40.1](https://github.com/jmerle/competitive-companion/releases/tag/2.40.1) (2023-03-03)
+- Fixed the parsing of CodeChef problems in active contests
+
+## [2.40.0](https://github.com/jmerle/competitive-companion/releases/tag/2.40.0) (2023-02-23)
+- Added support for PAT problems in the NowCoder parser
+- Added support for the vjudge.csgrandeur.cn mirror to the Virtual Judge parsers
+
+## [2.39.0](https://github.com/jmerle/competitive-companion/releases/tag/2.39.0) (2023-01-22)
 - Added support for LSYOI and SDUT OnlineJudge (thanks [@zymooll](https://github.com/zymooll) for the LSYOI parser)
 
 ## [2.38.2](https://github.com/jmerle/competitive-companion/releases/tag/2.38.2) (2022-12-24)

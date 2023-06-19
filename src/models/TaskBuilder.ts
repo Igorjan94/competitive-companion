@@ -1,4 +1,4 @@
-import * as cyrillicToTranslit from 'cyrillic-to-translit-js';
+import cyrillicToTranslit from 'cyrillic-to-translit-js';
 import { uuidv4 } from '../utils/random';
 import { Batch } from './Batch';
 import { InputConfiguration, OutputConfiguration } from './IOConfiguration';
@@ -7,7 +7,7 @@ import { Task } from './Task';
 import { Test } from './Test';
 import { TestType } from './TestType';
 
-const cyrillicToLatin = (cyrillicToTranslit as any)();
+const cyrillicToLatin = cyrillicToTranslit();
 
 export class TaskBuilder {
   public name: string = '';
@@ -71,12 +71,12 @@ export class TaskBuilder {
   }
 
   public setMemoryLimit(memoryLimit: number): TaskBuilder {
-    this.memoryLimit = memoryLimit;
+    this.memoryLimit = Math.floor(memoryLimit);
     return this;
   }
 
   public setTimeLimit(timeLimit: number): TaskBuilder {
-    this.timeLimit = timeLimit;
+    this.timeLimit = Math.floor(timeLimit);
     return this;
   }
 

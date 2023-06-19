@@ -29,10 +29,10 @@ A browser extension which parses competitive programming problems from various o
 - [AI Virtual Assistant](https://github.com/Saurav-Paul/AI-virtual-assistant-python)
 - [cpbooster](https://www.npmjs.com/package/cpbooster)
 - [Competitive Programming Gradle Plugin](https://github.com/saurabh73/competitive-programming)
-- [C+++ IDE](https://github.com/23786/Cppp-IDE)
 - [cphelper.nvim](https://github.com/p00f/cphelper.nvim)
 - [AutoCp](https://pushpavel.github.io/AutoCp/)
 - [Red Panda Dev-C++](https://github.com/royqh1979/RedPanda-CPP)
+- [CompetiTest.nvim](https://github.com/xeluxee/competitest.nvim)
 - Any other tool that can parse the data that is being sent, read more about that [below](#custom-tools)
 
 ## Supported websites
@@ -42,6 +42,7 @@ A browser extension which parses competitive programming problems from various o
 | ACMP                       | ✔              |                |
 | AcWing                     | ✔              |                |
 | Aizu Online Judge          | ✔              |                |
+| AlgoZenith                 | ✔              |                |
 | Anarchy Golf               | ✔              |                |
 | AtCoder                    | ✔              | ✔              |
 | Baekjoon Online Judge      | ✔              | ✔              |
@@ -57,6 +58,7 @@ A browser extension which parses competitive programming problems from various o
 | CS Academy                 | ✔              |                |
 | CSES                       | ✔              | ✔              |
 | CSU-ACM Online Judge       | ✔              | ✔              |
+| Dimik OJ                   | ✔              |                |
 | DMOJ                       | ✔              | ✔              |
 | Eolymp                     | ✔              | ✔              |
 | ECNU Online Judge          | ✔              | ✔              |
@@ -79,6 +81,7 @@ A browser extension which parses competitive programming problems from various o
 | LSYOI                      | ✔              |                |
 | Luogu                      | ✔              | ✔              |
 | Meta Coding Competitions   | ✔              |                |
+| MOI Arena                  | ✔              | ✔              |
 | mrJudge                    | ✔              |                |
 | MSK Informatics            | ✔              |                |
 | Neps Academy               | ✔              |                |
@@ -88,15 +91,19 @@ A browser extension which parses competitive programming problems from various o
 | NYTD Online Judge          | ✔              | ✔              |
 | omegaUp                    | ✔              |                |
 | OpenJudge                  | ✔              | ✔              |
+| OTOG                       | ✔              |                |
 | Panda Online Judge         | ✔              |                |
 | PEG Judge                  | ✔              | ✔              |
 | POJ                        | ✔              | ✔              |
 | PTA                        | ✔              |                |
 | Public Judge               | ✔              | ✔              |
 | QDUOJ                      | ✔              | ✔              |
+| RoboContest                | ✔              | ✔              |
 | SDUT OnlineJudge           | ✔              |                |
+| Sort Me                    | ✔              |                |
 | SPOJ                       | ✔              |                |
 | SSOIER                     | ✔              |                |
+| TheJobOverflow             | ✔              |                |
 | Timus Online Judge         | ✔              | ✔              |
 | TLX                        | ✔              |                |
 | Toph                       | ✔              |                |
@@ -190,7 +197,7 @@ It's not required for a tool to parse all these options, since some of them are 
     - **size**: The size of the batch, which is 1 when using a problem parser and the amount of problems in the contest when using a contest parser.
 
 ## Running locally
-The following commands can be used to start working on Competitive Companion locally. Additionally, make sure you got [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/en/) installed.
+The following commands can be used to start working on Competitive Companion locally. Additionally, make sure you got [Node.js](https://nodejs.org/en/) and [PNPM](https://pnpm.io/) installed.
 
 ```bash
 # Clone the repository
@@ -200,47 +207,47 @@ git clone https://github.com/jmerle/competitive-companion.git
 cd competitive-companion
 
 # Install the dependencies
-yarn
+pnpm install
 
 # Decide what you want to do next
 
 # Build the code to the build/ directory
-yarn build
+pnpm build
 
 # Build the code automatically when the source changes
-yarn watch
+pnpm watch
 
 # Lint the extension for possible mistakes
-yarn lint
+pnpm lint
 
 # Package the extension to a zip file
-yarn package
+pnpm package
 
 # Launch a Firefox instance with Competitive Companion loaded into a temporary profile
 # Automatically re-compiles the code when the source changes
 # Automatically reloads the extension in the Firefox instance when the code is re-compiled
-yarn dev:firefox
+pnpm dev:firefox
 
 # Does the same as dev:firefox but with Chrome, with the exception that the extension is not automatically reloaded
 # You'll have to manually go to chrome://extensions and click on the reload button on the Competitive Companion entry
-yarn dev:chrome
+pnpm dev:chrome
 ```
 
 ## Testing
-To run the tests, use `yarn test`, or `yarn test:no-headless` to run tests with the Chrome instance visible. All other arguments are automatically passed on to Jest.
+To run the tests, use `pnpm test`, or `pnpm test:no-headless` to run tests with the Chrome instance visible. Append `-- -t <pattern>` to the command to only run tests with names matching the given pattern.
 
 ## Mozilla reviewers
 The information provided below is meant for Mozilla volunteers.
 
 Software versions used:  
-Node.js: 18.13.0  
-Yarn: 1.22.19
+Node.js: 18.16.0  
+PNPM: 8.6.1
 
 Third-party libraries that can be found in the minified extension:  
 - [nanobar 0.4.2](https://github.com/jacoborus/nanobar/blob/v0.4.2/nanobar.js)
 - [snarkdown 2.0.0](https://github.com/developit/snarkdown/blob/2.0.0/src/index.js)
-- [webextension-polyfill-ts 0.26.0](https://github.com/Lusito/webextension-polyfill-ts/tree/5c9037651e1661706439b389a840a913223b9f1d)
-- [pdfjs-dist 3.2.146](https://github.com/mozilla/pdfjs-dist/blob/v3.2.146/build/pdf.js)
+- [webextension-polyfill 0.10.0](https://github.com/mozilla/webextension-polyfill/blob/0.10.0/src/browser-polyfill.js)
+- [pdfjs-dist 3.7.107](https://cdn.jsdelivr.net/npm/pdfjs-dist@3.7.107/build/pdf.js)
 - [cyrillic-to-translit-js 3.2.1](https://github.com/greybax/cyrillic-to-translit-js/blob/05f02e9e1df6d338f35258443f2e9c910bd8ccd4/CyrillicToTranslit.js)
 
-Package the extension by `cd`'ing into the source code submission directory, installing the dependencies with `yarn` and packaging with `yarn package`. The result can be found in the `dist/` directory.
+Package the extension by `cd`'ing into the source code submission directory, installing the dependencies with `pnpm install` and packaging with `pnpm package`. The result can be found in the `dist/` directory.

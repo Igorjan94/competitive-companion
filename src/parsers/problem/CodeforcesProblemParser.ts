@@ -14,13 +14,14 @@ export class CodeforcesProblemParser extends Parser {
       'https://codeforces.com/group/*/contest/*/problem/*',
       'https://codeforces.com/problemsets/acmsguru/problem/*/*',
       'https://codeforces.com/edu/course/*/lesson/*/*/practice/contest/*/problem/*',
+      'https://codeforces.com/problemset/gymProblem/*',
     ].forEach(pattern => {
       patterns.push(pattern);
       patterns.push(pattern.replace('https://codeforces.com', 'https://*.codeforces.com'));
     });
 
     const mlPatterns = patterns.map(pattern => pattern.replace('.com', '.ml'));
-    const esPatterns = patterns.map(pattern => pattern.replace('codeforces.com', 'codeforc.es'));
+    const esPatterns = patterns.map(pattern => pattern.replace('.com', '.es'));
 
     const httpsPatterns = patterns.concat(mlPatterns).concat(esPatterns);
     const httpPatterns = httpsPatterns.map(pattern => pattern.replace('https://', 'http://'));
@@ -125,7 +126,7 @@ export class CodeforcesProblemParser extends Parser {
     task.setCategory('acm.sgu.ru archive');
 
     task.setTimeLimit(parseFloat(/time limit per test: ([0-9.]+)\s+sec/.exec(html)[1]) * 1000);
-    task.setMemoryLimit(Math.floor(parseInt(/memory\s+limit per test:\s+(\d+)\s+KB/.exec(html)[1], 10) / 1000));
+    task.setMemoryLimit(parseInt(/memory\s+limit per test:\s+(\d+)\s+KB/.exec(html)[1], 10) / 1000);
 
     const blocks = elem.querySelectorAll('font > pre');
     for (let i = 0; i < blocks.length - 1; i += 2) {
@@ -140,10 +141,7 @@ export class CodeforcesProblemParser extends Parser {
     task.setCategory('acm.sgu.ru archive');
 
     task.setTimeLimit(parseFloat(/Time\s+limit per test: ([0-9.]+)\s+sec/i.exec(html)[1]) * 1000);
-
-    task.setMemoryLimit(
-      Math.floor(parseInt(/Memory\s+limit(?: per test)*: (\d+)\s+(?:kilobytes|KB)/i.exec(html)[1], 10) / 1000),
-    );
+    task.setMemoryLimit(parseInt(/Memory\s+limit(?: per test)*: (\d+)\s+(?:kilobytes|KB)/i.exec(html)[1], 10) / 1000);
 
     elem.querySelectorAll('table').forEach(table => {
       const blocks = table.querySelectorAll('pre');
@@ -215,9 +213,9 @@ export class CodeforcesProblemParser extends Parser {
   private getLastTextNode(elem: Element, selector: string): ChildNode {
     let selectedNode = elem.querySelector(selector);
 
-    const cursiveNode = selectedNode.querySelector('.tex-font-style-sl');
-    if (cursiveNode !== null) {
-      selectedNode = cursiveNode;
+    const styledNode = selectedNode.querySelector('.tex-font-style-sl, .tex-font-style-bf');
+    if (styledNode !== null) {
+      selectedNode = styledNode;
     }
 
     const textNodes = [...selectedNode.childNodes].filter(node => node.nodeType === Node.TEXT_NODE);

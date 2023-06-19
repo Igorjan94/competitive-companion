@@ -29,6 +29,7 @@ import { OpenJudgeContestParser } from './contest/OpenJudgeContestParser';
 import { PEGJudgeContestParser } from './contest/PEGJudgeContestParser';
 import { POJContestParser } from './contest/POJContestParser';
 import { QDUOJContestParser } from './contest/QDUOJContestParser';
+import { RoboContestContestParser } from './contest/RoboContestContestParser';
 import { TimusOnlineJudgeContestParser } from './contest/TimusOnlineJudgeContestParser';
 import { UOJContestParser } from './contest/UOJContestParser';
 import { VirtualJudgeContestParser } from './contest/VirtualJudgeContestParser';
@@ -41,6 +42,7 @@ import { ACMPProblemParser } from './problem/ACMPProblemParser';
 import { AcWingProblemParser } from './problem/AcWingProblemParser';
 import { AizuOnlineJudgeBetaProblemParser } from './problem/AizuOnlineJudgeBetaProblemParser';
 import { AizuOnlineJudgeProblemParser } from './problem/AizuOnlineJudgeProblemParser';
+import { AlgoZenithProblemParser } from './problem/AlgoZenithProblemParser';
 import { AnarchyGolfProblemParser } from './problem/AnarchyGolfProblemParser';
 import { AtCoderProblemParser } from './problem/AtCoderProblemParser';
 import { BaekjoonOnlineJudgeProblemParser } from './problem/BaekjoonOnlineJudgeProblemParser';
@@ -57,6 +59,7 @@ import { ContestHunterProblemParser } from './problem/ContestHunterProblemParser
 import { CSAcademyProblemParser } from './problem/CSAcademyProblemParser';
 import { CSESProblemParser } from './problem/CSESProblemParser';
 import { CSUACMOnlineJudgeProblemParser } from './problem/CSUACMOnlineJudgeProblemParser';
+import { DimikOJProblemParser } from './problem/DimikOJProblemParser';
 import { DMOJProblemParser } from './problem/DMOJProblemParser';
 import { ECNUOnlineJudgeProblemParser } from './problem/ECNUOnlineJudgeProblemParser';
 import { EolympProblemParser } from './problem/EolympProblemParser';
@@ -89,14 +92,18 @@ import { NOJProblemParser } from './problem/NOJProblemParser';
 import { NowCoderProblemParser } from './problem/NowCoderProblemParser';
 import { OmegaUpProblemParser } from './problem/OmegaUpProblemParser';
 import { OpenJudgeProblemParser } from './problem/OpenJudgeProblemParser';
+import { OTOGProblemParser } from './problem/OTOGProblemParser';
 import { PandaOnlineJudgeProblemParser } from './problem/PandaOnlineJudgeProblemParser';
 import { PEGJudgeProblemParser } from './problem/PEGJudgeProblemParser';
 import { POJProblemParser } from './problem/POJProblemParser';
 import { PTAProblemParser } from './problem/PTAProblemParser';
 import { QDUOJProblemParser } from './problem/QDUOJProblemParser';
+import { RoboContestProblemParser } from './problem/RoboContestProblemParser';
 import { SDUTOnlineJudgeProblemParser } from './problem/SDUTOnlineJudgeProblemParser';
+import { SortMeProblemParser } from './problem/SortMeProblemParser';
 import { SPOJProblemParser } from './problem/SPOJProblemParser';
 import { SSOIERProblemParser } from './problem/SSOIERProblemParser';
+import { TheJobOverflowProblemParser } from './problem/TheJobOverflowProblemParser';
 import { TimusOnlineJudgeProblemParser } from './problem/TimusOnlineJudgeProblemParser';
 import { TLXProblemParser } from './problem/TLXProblemParser';
 import { TophProblemParser } from './problem/TophProblemParser';
@@ -122,6 +129,8 @@ export const parsers: Parser[] = [
 
   new AizuOnlineJudgeProblemParser(),
   new AizuOnlineJudgeBetaProblemParser(),
+
+  new AlgoZenithProblemParser(),
 
   new AnarchyGolfProblemParser(),
 
@@ -164,6 +173,8 @@ export const parsers: Parser[] = [
 
   new CSUACMOnlineJudgeProblemParser(),
   new CSUACMOnlineJudgeContestParser(),
+
+  new DimikOJProblemParser(),
 
   new DMOJProblemParser(),
   new DMOJContestParser(),
@@ -242,6 +253,8 @@ export const parsers: Parser[] = [
   new OpenJudgeProblemParser(),
   new OpenJudgeContestParser(),
 
+  new OTOGProblemParser(),
+
   new PandaOnlineJudgeProblemParser(),
 
   new PEGJudgeProblemParser(),
@@ -255,11 +268,18 @@ export const parsers: Parser[] = [
   new QDUOJProblemParser(),
   new QDUOJContestParser(),
 
+  new RoboContestProblemParser(),
+  new RoboContestContestParser(),
+
   new SDUTOnlineJudgeProblemParser(),
+
+  new SortMeProblemParser(),
 
   new SPOJProblemParser(),
 
   new SSOIERProblemParser(),
+
+  new TheJobOverflowProblemParser(),
 
   new TimusOnlineJudgeProblemParser(),
   new TimusOnlineJudgeContestParser(),

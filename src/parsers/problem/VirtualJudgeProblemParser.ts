@@ -8,8 +8,10 @@ export class VirtualJudgeProblemParser extends Parser {
     return [
       'https://vjudge.net/problem/*',
       'https://cn.vjudge.net/problem/*',
+      'https://vjudge.csgrandeur.cn/problem/*',
       'https://vjudge.net/contest/*#problem/*',
       'https://cn.vjudge.net/contest/*#problem/*',
+      'https://vjudge.csgrandeur.cn/contest/*#problem/*',
     ];
   }
 
@@ -48,7 +50,7 @@ export class VirtualJudgeProblemParser extends Parser {
 
     if (memoryLimitDt !== undefined) {
       const memoryLimitStr = memoryLimitDt.nextElementSibling.textContent;
-      task.setMemoryLimit(Math.round(parseFloat(memoryLimitStr.split(' ')[0]) / 1024));
+      task.setMemoryLimit(parseFloat(memoryLimitStr.split(' ')[0]) / 1024);
     }
 
     if (inputFileDt !== undefined) {

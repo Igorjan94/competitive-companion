@@ -6,7 +6,7 @@ import { VirtualJudgeProblemParser } from '../problem/VirtualJudgeProblemParser'
 
 export class VirtualJudgeContestParser extends ContestParser<[string, string, any]> {
   public getMatchPatterns(): string[] {
-    return ['https://vjudge.net/contest/*'];
+    return ['https://vjudge.net/contest/*', 'https://vjudge.csgrandeur.cn/contest/*'];
   }
 
   public canHandlePage(): boolean {
@@ -31,7 +31,7 @@ export class VirtualJudgeContestParser extends ContestParser<[string, string, an
       if (property.title == 'Time limit') {
         task.setTimeLimit(parseFloat(property.content.split(' ')[0]));
       } else if (property.title == 'Memory limit' || property.title == 'Mem limit') {
-        task.setMemoryLimit(Math.floor(parseFloat(property.content.split(' ')[0]) / 1024));
+        task.setMemoryLimit(parseFloat(property.content.split(' ')[0]) / 1024);
       }
     }
 

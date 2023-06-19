@@ -1,7 +1,7 @@
 {
   "name": "competitive-companion",
   "productName": "Competitive Companion",
-  "version": "2.38.2",
+  "version": "2.44.0",
   "description": "Parses competitive programming problems and sends them to various tools like CHelper and Hightail.",
   "repository": "https://github.com/jmerle/competitive-companion",
   "author": "Jasper van Merle",
@@ -11,61 +11,59 @@
     "build": "cross-env WEBPACK_PROFILE=extension webpack --mode=production",
     "build:dev": "cross-env WEBPACK_PROFILE=extension webpack --mode=development",
     "build:test": "cross-env WEBPACK_PROFILE=test webpack --mode=development",
-    "watch": "yarn build:dev --watch",
-    "package": "yarn build && web-ext build -s build-extension/ -a dist/ -o",
+    "watch": "pnpm build:dev --watch",
+    "package": "pnpm build && web-ext build -s build-extension/ -a dist/ -o",
     "generate-banners": "ts-node scripts/generate-banners.ts",
-    "lint": "yarn lint:eslint && yarn lint:prettier && yarn lint:package",
+    "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:package",
     "lint:eslint": "eslint --format codeframe 'src/**' 'tests/**' 'scripts/**' jest.config.js webpack.config.ts",
     "lint:prettier": "prettier --check --ignore-path .gitignore '**/*.{ts,js,html,yml,json}'",
-    "lint:package": "yarn build && web-ext lint -s build-extension/ -o text",
-    "fix": "yarn fix:eslint && yarn fix:prettier",
-    "fix:eslint": "yarn lint:eslint --fix",
+    "lint:package": "pnpm build && web-ext lint -s build-extension/ -o text",
+    "fix": "pnpm fix:eslint && pnpm fix:prettier",
+    "fix:eslint": "pnpm lint:eslint --fix",
     "fix:prettier": "prettier --write --ignore-path .gitignore '**/*.{ts,js,html,yml,json}'",
-    "test": "yarn build:test && jest",
-    "test:no-headless": "cross-env HEADLESS=false yarn test",
+    "test": "pnpm build:test && jest",
+    "test:no-headless": "cross-env HEADLESS=false pnpm test",
     "start:firefox": "web-ext run -s build-extension/ --start-url https://codeforces.com/problemset/problem/954/G --pref devtools.browserconsole.filter.jswarn=false --pref devtools.webconsole.filter.warn=false",
     "start:chrome": "ts-node scripts/start-chrome.ts",
-    "dev:firefox": "yarn build:dev && concurrently 'yarn start:firefox' 'yarn watch' -n web-ext,webpack -c blue,yellow --kill-others",
-    "dev:chrome": "yarn build:dev && concurrently 'yarn start:chrome' 'yarn watch' -n chrome,webpack -c blue,yellow --kill-others"
+    "dev:firefox": "pnpm build:dev && concurrently 'pnpm start:firefox' 'pnpm watch' -n web-ext,webpack -c blue,yellow --kill-others",
+    "dev:chrome": "pnpm build:dev && concurrently 'pnpm start:chrome' 'pnpm watch' -n chrome,webpack -c blue,yellow --kill-others"
   },
   "dependencies": {
     "cyrillic-to-translit-js": "3.2.1",
     "nanobar": "0.4.2",
-    "pdfjs-dist": "3.2.146",
+    "pdfjs-dist": "3.7.107",
     "snarkdown": "2.0.0",
-    "webextension-polyfill-ts": "0.26.0"
+    "webextension-polyfill": "0.10.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.2.6",
-    "@types/node": "^18.11.18",
-    "@types/terser-webpack-plugin": "^5.2.0",
-    "@typescript-eslint/eslint-plugin": "^5.48.2",
-    "@typescript-eslint/parser": "^5.48.2",
-    "chrome-launcher": "^0.15.1",
-    "concurrently": "^7.6.0",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^18.16.17",
+    "@types/webextension-polyfill": "^0.10.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
+    "chrome-launcher": "^0.15.2",
+    "concurrently": "^8.2.0",
     "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.32.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-formatter-codeframe": "^7.32.1",
     "eslint-plugin-import": "^2.27.5",
-    "fork-ts-checker-webpack-plugin": "^7.3.0",
+    "fork-ts-checker-webpack-plugin": "^8.0.0",
     "generic-pool": "^3.9.0",
-    "husky": "4.3.8",
-    "jest": "^29.3.1",
-    "lint-staged": "^13.1.0",
-    "prettier": "^2.8.3",
-    "puppeteer": "^19.5.2",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.8",
+    "puppeteer": "^20.5.0",
     "string-replace-loader": "^3.1.0",
-    "terser-webpack-plugin": "^5.3.6",
-    "ts-jest": "^29.0.5",
-    "ts-loader": "^9.4.2",
+    "terser-webpack-plugin": "^5.3.9",
+    "ts-jest": "^29.1.0",
+    "ts-loader": "^9.4.3",
     "ts-node": "^10.9.1",
-    "typescript": "^4.9.4",
-    "web-ext": "^7.4.0",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-merge": "^5.8.0",
+    "typescript": "^5.1.3",
+    "web-ext": "^7.6.2",
+    "webpack": "^5.86.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^5.9.0",
     "worker-loader": "^3.0.8"
   },
   "eslintConfig": {
@@ -141,19 +139,6 @@
         }
       ]
     }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged --concurrent false"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,js}": [
-      "eslint --format codeframe --fix"
-    ],
-    "*.{ts,js,html,yml,json}": [
-      "prettier --write"
-    ]
   },
   "prettier": {
     "singleQuote": true,
