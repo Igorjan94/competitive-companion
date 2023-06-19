@@ -50,10 +50,16 @@
   },
 
   "commands": {
-    "_execute_browser_action": {
+    "_execute_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+U"
       }
+    }
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{74e326aa-c645-4495-9287-b6febc5565a7}"
     }
   }
 }
